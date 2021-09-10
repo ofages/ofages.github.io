@@ -4,18 +4,21 @@
 		<input name="digit2" type="text" inputmode="numeric">
 		<input name="digit3" type="text" inputmode="numeric">
 		<input name="digit4" type="text" inputmode="numeric">
-
+		<br>
+		<div name="console"></div>
 		<script>
+			let divConsole = document.querySelector('input[name="console"]');
+			
 			// Android
 			if ('OTPCredential' in window) {
-			  console.log('OTPCredential OK !');
+			 divConsole.append('<p>OTPCredential OK !</p>');
 			  
 			  window.addEventListener('DOMContentLoaded', e => {
 			    navigator.credentials.get({
 			      otp: { transport:['sms'] }
 			    }).then(otp => {
 			      const codeOTP = otp.code;
-			      console.log('Code OTP reçu : ' + codeOTP);
+			      divConsole.append('<p>Code OTP reçu : ' + codeOTP '</p>');
 
 			      //document.querySelector('input[autocomplete="one-time-code"]').value = codeOTP;
 			      document.querySelector('input[name="digit1"]').value = codeOTP.substring(0,1);
@@ -23,6 +26,7 @@
 			      document.querySelector('input[name="digit3"]').value = codeOTP.substring(2,3);
 			      document.querySelector('input[name="digit4"]').value = codeOTP.substring(3,4);
 			    }).catch(err => {
+			      divConsole.append('<p>Erreur OTPCredential : ' + err + '</p>');
 			      console.log(err);
 			    });
 			  });
@@ -30,16 +34,16 @@
 
 			// IOS
 			document.querySelector('input[name="digit1"]').addEventListener('paste', (event) => {
-			    const codeOTP = (event.clipboardData || window.clipboardData).getData('text');
-    			console.log('Code OTP collé : ' + codeOTP);
+				const codeOTP = (event.clipboardData || window.clipboardData).getData('text');
+				divConsole.append('<p>Code OTP collé : ' + codeOTP + '</p>');
 
-    			if (codeOTP.length = 4) {
-	    			document.querySelector('input[name="digit1"]').value = codeOTP.substring(0,1);
-				    document.querySelector('input[name="digit2"]').value = codeOTP.substring(1,2);
-				    document.querySelector('input[name="digit3"]').value = codeOTP.substring(2,3);
-				    document.querySelector('input[name="digit4"]').value = codeOTP.substring(3,4);
+    				if (codeOTP.length = 4) {
+					document.querySelector('input[name="digit1"]').value = codeOTP.substring(0,1);
+					document.querySelector('input[name="digit2"]').value = codeOTP.substring(1,2);
+					document.querySelector('input[name="digit3"]').value = codeOTP.substring(2,3);
+					document.querySelector('input[name="digit4"]').value = codeOTP.substring(3,4);
 
-				    event.preventDefault();
+					event.preventDefault();
 				}
 			});
 		</script>
