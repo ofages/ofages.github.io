@@ -35,10 +35,6 @@
 			  });
 			}
 
-			document.querySelector('input[name="digit1"]').addEventListener('input', (event) => {
-				divConsole.innerHTML += '<p>Input event : ' + event + '</p>';
-			});
-			
 			// IOS
 			document.querySelector('input[name="digit1"]').addEventListener('paste', (event) => {
 				const codeOTP = (event.clipboardData || window.clipboardData).getData('text');
