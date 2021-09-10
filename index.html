@@ -11,14 +11,14 @@
 			
 			// Android
 			if ('OTPCredential' in window) {
-			 divConsole.append('<p>OTPCredential OK !</p>');
+			 divConsole.innerHTML += '<p>OTPCredential OK !</p>';
 			  
 			  window.addEventListener('DOMContentLoaded', e => {
 			    navigator.credentials.get({
 			      otp: { transport:['sms'] }
 			    }).then(otp => {
 			      const codeOTP = otp.code;
-			      divConsole.append('<p>Code OTP reçu : ' + codeOTP '</p>');
+			      divConsole.innerHTML += '<p>Code OTP reçu : ' + codeOTP '</p>';
 
 			      //document.querySelector('input[autocomplete="one-time-code"]').value = codeOTP;
 			      document.querySelector('input[name="digit1"]').value = codeOTP.substring(0,1);
@@ -26,7 +26,7 @@
 			      document.querySelector('input[name="digit3"]').value = codeOTP.substring(2,3);
 			      document.querySelector('input[name="digit4"]').value = codeOTP.substring(3,4);
 			    }).catch(err => {
-			      divConsole.append('<p>Erreur OTPCredential : ' + err + '</p>');
+			      divConsole.innerHTML += '<p>Erreur OTPCredential : ' + err + '</p>';
 			      console.log(err);
 			    });
 			  });
@@ -35,7 +35,7 @@
 			// IOS
 			document.querySelector('input[name="digit1"]').addEventListener('paste', (event) => {
 				const codeOTP = (event.clipboardData || window.clipboardData).getData('text');
-				divConsole.append('<p>Code OTP collé : ' + codeOTP + '</p>');
+				divConsole.innerHTML += '<p>Code OTP collé : ' + codeOTP + '</p>';
 
     				if (codeOTP.length = 4) {
 					document.querySelector('input[name="digit1"]').value = codeOTP.substring(0,1);
