@@ -21,7 +21,7 @@
 			      otp: { transport:['sms'] }
 			    }).then(otp => {
 			      const codeOTP = otp.code;
-			      //divConsole.innerHTML += '<p>Code OTP reçu : ' + codeOTP + '</p>';
+			      document.querySelector('div[name="console"]').innerHTML += '<p>Code OTP reçu : ' + codeOTP + '</p>';
 
 			      //document.querySelector('input[autocomplete="one-time-code"]').value = codeOTP;
 			      document.querySelector('input[name="digit1"]').value = codeOTP.substring(0,1);
