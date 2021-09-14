@@ -49,6 +49,14 @@
 					event.preventDefault();
 				}
 			});
+			
+			document.querySelector('input[name="digit1"]').addEventListener('keydown', (event) => {
+				divConsole.innerHTML += '<p>keydown : ' + event.which + ' / ' + event.keyCode + '</p>';
+			});
+			
+			document.querySelector('input[name="digit1"]').addEventListener('keyup', (event) => {
+				divConsole.innerHTML += '<p>keyup : ' + event.which + ' / ' + event.keyCode + '</p>';
+			});
 		</script>
 	</body>
 </html>
