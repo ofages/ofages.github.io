@@ -100,7 +100,7 @@
 			  }
 			});
 
- 			"focus keydown keyup".split(" ").forEach(function(e) {
+ 			"click focus keydown keyup".split(" ").forEach(function(e) {
 				document.querySelector('input[autocomplete="one-time-code"]').addEventListener(e, (event) => {
 					let input = document.querySelector('input[autocomplete="one-time-code"]');
 					let boxes = document.querySelectorAll('span.box');
@@ -108,6 +108,15 @@
 					let childNumber = input.selectionStart + 1;
 					if (childNumber < 5) {
 						document.querySelector('div.back span:nth-child(' + childNumber + ')').classList.add('focus');	
+					}
+				});
+			});
+
+			"click focus keydown keyup".split(" ").forEach(function(e) {
+				document.querySelector('input[autocomplete="one-time-code"]').addEventListener(e, (event) => {
+					let input = document.querySelector('input[autocomplete="one-time-code"]');
+					if (input.selectionStart === 4) {
+						input.setSelectionRange(3, 3);
 					}
 				});
 			});
