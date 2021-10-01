@@ -33,6 +33,13 @@
           padding: 4px;
           margin-right: 5px;
       }
+	    
+      .focus {
+      	  height: 36px;
+      	  width: 36px;
+          border: solid 3px #00824e;
+          background-color: #ffffff;
+      }
 
       .top {
           position: absolute;
@@ -83,15 +90,27 @@
 			    });
 			  });
 			} else {
-        divConsole.innerHTML += '<p>API OTPCredential indisponible</p>';
-      }
-      
-      document.querySelector('input[autocomplete="one-time-code"]').addEventListener('keyup', (event) => {
-        let input = document.querySelector('input[autocomplete="one-time-code"]');
-        if (input.value.length == 4) {
-          input.blur();
-        }
-      });
+				divConsole.innerHTML += '<p>API OTPCredential indisponible</p>';
+			}
+
+			document.querySelector('input[autocomplete="one-time-code"]').addEventListener('keyup', (event) => {
+			  let input = document.querySelector('input[autocomplete="one-time-code"]');
+			  if (input.value.length == 4) {
+			    input.blur();
+			  }
+			});
+
+ 			"focus keydown keyup".split(" ").forEach(function(e) {
+				document.querySelector('input[autocomplete="one-time-code"]').addEventListener(e, (event) => {
+					let input = document.querySelector('input[autocomplete="one-time-code"]');
+					let boxes = document.querySelectorAll('span.box');
+					boxes.forEach(box => box.classList.remove('focus'));
+					let childNumber = input.selectionStart + 1;
+					if (childNumber < 5) {
+						document.querySelector('div.back span:nth-child(' + childNumber + ')').classList.add('focus');	
+					}
+				});
+			});
 		</script>
 	</body>
 </html>
