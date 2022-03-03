@@ -4,7 +4,7 @@
     <div name="result"></div>
     <script>
       if (WURFL) {
-        document.querySelector('div[name="result"]').innerHTML += WURFL;
+        document.querySelector('div[name="result"]').innerHTML += JSON.stringify(WURFL);
       }
     </script>
   </body>
